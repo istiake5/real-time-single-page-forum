@@ -20,12 +20,6 @@ class ReplyController extends Controller
         //return Reply::latest()->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Question $question, Request $request)
     {
        $reply =  $question->replies()->create($request->all());
