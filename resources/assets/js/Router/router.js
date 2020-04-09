@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 import Login from "../components/login/Login";
 import Logout from "../components/login/Logout";
 import Signup from "../components/login/signup";
+import Create from "../components/forum/create";
+import Read from "../components/forum/read";
 import Forum from "../components/forum/Forum";
 Vue.use(VueRouter);
 const routes = [
@@ -11,6 +13,8 @@ const routes = [
     { path: "/logout", component: Logout },
     { path: "/signup", component: Signup },
     { path: "/forum", component: Forum, name: 'forum' },
+    { path: "/ask", component: Create },
+    { path: "/question/:slug", component: Read, name: 'read' },
 ];
 
 const router = new VueRouter({
