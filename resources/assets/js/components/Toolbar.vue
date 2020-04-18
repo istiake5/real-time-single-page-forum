@@ -2,6 +2,7 @@
   <v-toolbar>
     <v-toolbar-title>Istiake</v-toolbar-title>
     <v-spacer></v-spacer>
+    <app-notification v-if="loggedIn"></app-notification>
     <div class="hidden-sm-and-down">
       <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
         <v-btn>{{item.title}}</v-btn>
@@ -11,9 +12,12 @@
 </template>
 
 <script>
+import AppNotification from "./AppNotification";
 export default {
+  components: { AppNotification },
   data() {
     return {
+      loggedIn: User.loggedIn(),
       items: [
         { title: "Forum", to: "/forum", show: true },
         { title: "Login", to: "/login", show: !User.loggedIn() },
