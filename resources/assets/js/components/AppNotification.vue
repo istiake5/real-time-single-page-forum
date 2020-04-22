@@ -29,7 +29,8 @@ export default {
     return {
       read: {},
       unread: {},
-      unreadCount: 0
+      unreadCount: 0,
+      sound: "http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3"
     };
   },
   created() {
@@ -37,11 +38,16 @@ export default {
       this.getNotifications();
     }
     Echo.private("App.User." + User.id()).notification(notification => {
+      this.playSound();
       this.unread.unshift(notification);
       this.unreadCount++;
     });
   },
   methods: {
+    playSound() {
+      let alert = new Audio(this.sound);
+      alert.play();
+    },
     getNotifications() {
       axios
         .post("/api/notifications")
